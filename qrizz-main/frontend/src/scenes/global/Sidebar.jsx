@@ -136,13 +136,7 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+           
             <div style={{display:'flex',alignItems:'center',justifyContent:'space-evenly'}}>
             <Item
               title="Favourite Charts"
@@ -173,13 +167,8 @@ const Sidebar = () => {
             
 
            
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+         
+         <Box height={260}></Box>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
              <Item
               title="Clear History"

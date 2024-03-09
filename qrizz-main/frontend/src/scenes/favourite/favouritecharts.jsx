@@ -2,10 +2,7 @@ import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
-import BarChart from "../../components/BarChart";
-import StatBox from "../../components/StatBox";
-import ProgressCircle from "../../components/ProgressCircle";
+
 import AreaChart from "../../components/chart1";
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
