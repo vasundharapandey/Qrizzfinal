@@ -3,11 +3,7 @@ import * as d3 from "d3";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
-const StackedAreaChart = ({
-  width,
-  height,
-  data,
-}) => {
+const StackedAreaChart = ({ width, height, data }) => {
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -19,7 +15,7 @@ const StackedAreaChart = ({
     .offset(d3.stackOffsetNone);
   const series = stackSeries(data);
 
-  const max = 200;
+  const max = d3.max(series, d => d3.max(d, d => d[1])); // Find maximum value in the stacked series
   const yScale = useMemo(() => {
     return d3
       .scaleLinear()
@@ -71,22 +67,33 @@ const StackedAreaChart = ({
     .y1((d) => yScale(d[1]))
     .y0((d) => yScale(d[0]));
 
-  const colorScale = d3.scaleOrdinal().domain(["groupA", "groupB"]).range(["green", "blue"]);
+    const colorScale = d3.scaleOrdinal().domain(["groupA", "groupB", "groupC", "groupD"]).range(["#66c2a5", "blue", "#8da0cb", "#e78ac3"]);
 
-  const allPath = series.map((serie, i) => {
-    const path = areaBuilder(serie);
-    return (
-      <path
-        key={i}
-        d={path}
-        opacity={1}
-        stroke="none"
-        fill={colorScale(serie.key)}
-        fillOpacity={i / 10 + 0.1}
-      />
-    );
-  });
-
+    const allPath = series.map((serie, i) => {
+      const path = areaBuilder(serie);
+      const fillColor = colorScale(series[i].key);
+      const lighterFillColor = d3.color(fillColor).brighter(0.5); // Adjust the brightness level as needed
+      const darkerStrokeColor = d3.color(fillColor).darker(0.5);
+      return (
+        <g key={i}>
+          <defs>
+            <linearGradient id={`gradient-${i}`} x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={fillColor} />
+              <stop offset="100%" stopColor={lighterFillColor} />
+            </linearGradient>
+          </defs>
+          <path
+            d={path}
+            opacity={2}
+            fill={`url(#gradient-${i})`}
+            fillOpacity={0.7} // Fixed fill opacity
+            stroke={darkerStrokeColor}
+            strokeWidth={2}
+          />
+        </g>
+      );
+    });
+    
   return (
     <div>
       <svg width={width} height={height}>

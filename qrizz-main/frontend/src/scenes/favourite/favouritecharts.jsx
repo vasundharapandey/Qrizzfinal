@@ -2,14 +2,22 @@ import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import Header from "../../components/Header";
-
+import { Line, Circle } from 'rc-progress';
 import AreaChart from "../../components/chart1";
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import StackedAreaChart from "../../components/chart2.jsx";
-
+import { Grid } from '@mui/material';
+import BarChart from "../../components/barchart.jsx";
 import axios from "axios";
+import DonutChart from "../../components/donutchart.jsx";
+import ProgressBar from "../../components/ProgressBar.jsx";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { green } from "@mui/material/colors";
+
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 const Favouritecharts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -49,6 +57,7 @@ const Favouritecharts = () => {
     }
   
 
+    
   
   return (
     <Box mx="50px">
@@ -94,15 +103,49 @@ const Favouritecharts = () => {
         {/* ROW 2, COLUMN 1 */}
         <Box gridColumn="span 1" backgroundColor="#2a354a" padding="10px" borderRadius="10px">
   <span> Top Selling Products And Average Daily Sales </span>
-  <div style={{ display: 'flex' ,margin:'10px' }}>
-  <div style={{ flex: '1', width: '200px' }}>
-    <div> <img src="../../assets/11.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
-  </div>
-  <div style={{ flex: '1', width: '180px' }}>
-    <div> <img src="../../assets/12.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
-  </div>
-</div>
-
+ 
+<Grid container spacing={1}>
+        <Grid item xs={6}>
+          <Grid container spacing={1} direction="column">
+            <Grid item>
+              <Box border={0} p={2}>
+                <Typography display={"inline-flex"} fontSize={'35px'} >{'$'+topsalesdata[0]}</Typography>
+                <Typography display={"inline-flex"} color={colors.greenAccent[500]}  >{'↑'+topsalesdata[1]}</Typography>
+              <Typography>Expected earnings</Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box border={0} p={2}>
+              <DonutChart 
+  data={[
+    { name: "shoes", value: 7660 },
+    { name: "gaming", value: 2820},
+    { name: "others", value: 45257}
+  ]}
+  width={250} 
+  height={80} 
+/>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={6}>
+          <Grid container spacing={2} direction="column">
+            <Grid item>
+              <Box border={0} p={2}>
+              <Typography display="inline-flex" fontSize={'35px'}>{topsalesdata[5]}</Typography>
+                <Typography display="inline-flex" color={colors.greenAccent[500]} >{'↑'+topsalesdata[6]}</Typography>
+                <Typography>Average daily sales</Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box border={0} p={2}>
+               <BarChart />
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     <div>Show me the list of Top selling products and Average Daily sales among all the items...</div>
 
 </Box>
@@ -111,14 +154,46 @@ const Favouritecharts = () => {
         {/* ROW 2, COLUMN 2 */}
         <Box gridColumn="span 1" backgroundColor="#2a354a" padding="10px" borderRadius="10px">
         <span> New Customers and this month Orders </span>
-        <div style={{ display: 'flex' ,margin:'10px' }}>
-  <div style={{ flex: '1', width: '200px',height:'200px' }}>
-    <div> <img src="../../assets/21.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
-  </div>
-  <div style={{ flex: '1', width: '180px' }}>
-    <div> <img src="../../assets/22.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
-  </div>
-</div>
+        <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Grid container spacing={2} direction="column">
+            <Grid item>
+              <Box border={0} p={2}>
+              <Typography display={"inline-flex"}fontSize={'35px'}>{topsalesdata[7]}</Typography>
+                <Typography display={"inline-flex"}color={colors.redAccent[500]}>{'↓'+topsalesdata[8]}</Typography>
+                <Typography>Orders this month</Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box border={0} p={2}>
+                <Typography fontSize={'25px'}>{topsalesdata[9] +' to Goal'}</Typography>
+                <ProgressBar  bgcolor={"#4cceac"} completed={62} />
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={6}>
+          <Grid container spacing={2} direction="column">
+            <Grid item>
+              <Box border={0} p={2}>
+                <Typography fontSize={'35px'}>{topsalesdata[11]}</Typography>
+                <Typography>New Customers this month</Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box border={0} p={2}>
+                <Typography>Today's Heroes</Typography>
+              <AvatarGroup total={48}>
+  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+  <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+  <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
+  <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg" />
+</AvatarGroup>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
 
 <div>Show me the new Customers and this month Orders</div>      
   </Box>

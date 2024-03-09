@@ -3,22 +3,14 @@ import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
-import {ColorModeContext, tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import { ColorModeContext, tokens } from "../../theme";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Switch } from '@mui/material';
 import { useContext } from "react";
 import Button from '@mui/material/Button';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import AddIcon from '@mui/icons-material/Add';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import Axios from "axios";
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
@@ -63,6 +55,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
+        height: "100vh", // Set sidebar height to 100% of viewport height
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -92,25 +85,29 @@ const Sidebar = () => {
             }}
           >
             {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
-                <img
-                  alt="profile-user"
-                  width="38px"
-                  height="38px"
-                  src={`../../assets/logo.jpg`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />  qRIZZ
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              </Box>
+            <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            ml="15px"
+            flexDirection="row" // Ensure items are in the same line
+          >
+           <Typography variant="h3" color={colors.grey[100]} style={{ display: "inline-flex", alignItems: "center" }}>
+  <img
+    alt="profile-user"
+    width="38px"
+    height="38px"
+    src={`../../assets/logo.jpg`}
+    style={{ cursor: "pointer", borderRadius: "50%", marginRight: "10px" }}
+  />  
+  qRIZZ
+</Typography>
+
+            <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+              <MenuOutlinedIcon />
+            </IconButton>
+          </Box>
+          
             )}
           </MenuItem>
           {/* Render items based on values fetched from backend */}
@@ -160,7 +157,7 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{ m: "15px 0 5px 45px" }}
             >
            Recent
             </Typography>

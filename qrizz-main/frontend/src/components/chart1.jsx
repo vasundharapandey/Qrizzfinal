@@ -41,7 +41,7 @@ const AreaChart = ({ width, height, data }) => {
     const yAxisGenerator = d3.axisLeft(yScale).tickFormat(d => `$${(d / 1000).toFixed(1)}K`); // Prefix ticks with '$' and postfix with 'K'
     svgElement.append("g").call(yAxisGenerator);
 
-    // Add dotted horizontal lines with light color and opacity
+    // Add dotted horizontal lines with minimal style
     svgElement.selectAll(".dotted-line")
       .data(yScale.ticks())
       .enter().append("line")
@@ -50,9 +50,10 @@ const AreaChart = ({ width, height, data }) => {
       .attr("x2", boundsWidth)
       .attr("y1", d => yScale(d))
       .attr("y2", d => yScale(d))
-      .style("stroke", "#f0f0f0") // Very light color
-      .style("stroke-dasharray", "3,3")
-      .style("opacity", 0.5); // Adjust opacity
+      .style("stroke", "#ddd") // Light gray color
+      .style("stroke-width", 1) // Reduced stroke width
+      .style("stroke-dasharray", "1,1") // Shorter dashes
+      .style("opacity", 0.2); // Reduced opacity
   }, [xScale, yScale, boundsHeight]);
 
   const areaBuilder = d3
@@ -77,7 +78,7 @@ const AreaChart = ({ width, height, data }) => {
       <svg width={width} height={height}>
         <defs>
           <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(144, 238, 144, 0.7)" />
+            <stop offset="0%" stopColor="#4cceac" />
             <stop offset="100%" stopColor="rgba(144, 238, 144, 0)" />
           </linearGradient>
         </defs>
@@ -95,9 +96,9 @@ const AreaChart = ({ width, height, data }) => {
           <path
             d={linePath}
             opacity={1}
-            stroke="#2E8B57" // Neon green color
+            stroke="#32CD32" // Brighter green color
             fill="none"
-            strokeWidth={2}
+            strokeWidth={3} // Increased stroke width for better visibility
           />
         </g>
         <g

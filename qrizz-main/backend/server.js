@@ -70,7 +70,10 @@ app.get('/api/sales', (req, res) => {
         '7,660',   
         '2,820',
         '45,257',
-        '2,420','2.6%'
+        '2,420','2.6%',
+        '1836','2.2%',
+        '1048','62',
+        '6.3k','48'
     ];
     res.json(topsalesdata); // Sending the array of objects as JSON response
 });

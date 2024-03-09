@@ -52,7 +52,7 @@ const GridWithRows = ({ database }) => {
               <div>
               How many albums are there in database show me the number of albums count  </div>
             </PaperSt>
-            <Box height={25}></Box>
+            <Box height={30}></Box>
           </Grid>
         </Grid>
       ))}
