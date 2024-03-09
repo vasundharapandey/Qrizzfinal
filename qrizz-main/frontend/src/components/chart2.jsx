@@ -59,6 +59,7 @@ const StackedAreaChart = ({
       .attr("y1", (d) => yScale(d))
       .attr("y2", (d) => yScale(d))
       .attr("stroke", "#ddd") // Very light gray
+      .attr("stroke-opacity", 0.2) // Adjust opacity here
       .attr("stroke-dasharray", "2,2");
   }, [xScale, yScale, boundsHeight]);
 

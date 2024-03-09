@@ -94,26 +94,16 @@ const Favouritecharts = () => {
         {/* ROW 2, COLUMN 1 */}
         <Box gridColumn="span 1" backgroundColor="#2a354a" padding="10px" borderRadius="10px">
   <span> Top Selling Products And Average Daily Sales </span>
-  <div style={{ display: 'flex' }}>
-      <div style={{flex :'1'}}>
-        <div style={{flex:'1'}}>
-        {  topsalesdata[0]}
-        <div>{topsalesdata[1]}</div>
-        </div>
+  <div style={{ display: 'flex' ,margin:'10px' }}>
+  <div style={{ flex: '1', width: '200px' }}>
+    <div> <img src="../../assets/11.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
+  </div>
+  <div style={{ flex: '1', width: '180px' }}>
+    <div> <img src="../../assets/12.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
+  </div>
+</div>
 
-
-
-
-        <div>Content for column 1</div>
-       
-      </div>
-      <div className="column">
-        <div>Content for column 2</div>
-        <div>Content for column 2</div>
-        
-      </div>
-    </div>
-
+    <div>Show me the list of Top selling products and Average Daily sales among all the items...</div>
 
 </Box>
         
@@ -121,19 +111,16 @@ const Favouritecharts = () => {
         {/* ROW 2, COLUMN 2 */}
         <Box gridColumn="span 1" backgroundColor="#2a354a" padding="10px" borderRadius="10px">
         <span> New Customers and this month Orders </span>
-        <div style={{ display: 'flex' }}>
-      <div style={{flex :'1'}}>
-        <div>Content for column 1</div>
-        <div>Content for column 1</div>
-       
-      </div>
-      <div className="column">
-        <div>Content for column 2</div>
-        <div>Content for column 2</div>
-        
-      </div>
-    </div>
-      
+        <div style={{ display: 'flex' ,margin:'10px' }}>
+  <div style={{ flex: '1', width: '200px',height:'200px' }}>
+    <div> <img src="../../assets/21.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
+  </div>
+  <div style={{ flex: '1', width: '180px' }}>
+    <div> <img src="../../assets/22.png" alt="" style={{ width: '100%', height: 'auto' }} /></div>
+  </div>
+</div>
+
+<div>Show me the new Customers and this month Orders</div>      
   </Box>
           </Box>
           </Box>
